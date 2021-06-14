@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% include 'navbar.html'%}
+{% block content%}
+        
+<h2 class="jumbotron" style="margin-top: 3%; text-align: center;">
+    Current discussions on the forum: {{count}}
+    <form method="POST" action="{% url 'addADiscussion' %}">
+        {% csrf_token %}
+        <button class="button" style="width:fit-content; padding: 4px; margin:4%; background-color: pink; align-self: center;">Add more</button>
+    </form>
+</h2>
+    <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+    
+    
+    {%for discussion in discussions %}
+    
+        <div class="card box container">
+            <br>
+            <h5 class="card-title">
+                <a href="{% url 'single_discussion' discussion.pk %}" style="color:pink"><h3>{{discussion.topic}}</h3></a> 
+                <div class="card-body container">
+                        <p style="font-size: 14px;">{{discussion.text}}</p>
+                    </h5>
+                    <hr>
+                    <p style="font-style: italic;"> By: {{discussion.profile}}</p>
+                   
+                    
+            
+                    
+
+                    <form method="POST" action="{% url 'addAComment' discussion.pk %}">
+                        {% csrf_token %}
+                    <button class="button" style="width:fit-content; padding: 4px; margin:10px; background-color: pink;"> Comment </button>
+                    </form>
+                </div>
+        </div>
+    </div>
+    <br>
+    
+    {%endfor%}
+          
+{% endblock %}

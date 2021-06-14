@@ -1,0 +1,48 @@
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light "  style="background-color:#d9b8e457" style="padding-top: 35px; padding-bottom: 10px;">
+  <div class="container-fluid" >
+    
+    <a class="navbar-brand" style="color: rgb(78 5 115 / 90%);"  href="{% url 'profile' %}">{{user.username}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);"  href="{% url 'my_cards'%}">My cards</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);" href="{% url 'home' %}" >Forum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);" href="{% url 'transaction' %}" >Transaction</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);" href="{% url 'profile' %}" >My profile</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);"  href="{% url 'logout'%}">Logout</a>
+        </li>
+        {% else %}
+        <a class="navbar-brand" style="color: rgb(78 5 115 / 90%);"  href="{% url 'login' %}">Welcome to RuPaul's card exchange game</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <li class="nav-item">
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);" href="{% url 'signup'%}">Signup</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" style="color: rgb(125 5 140 / 90%);" href="{% url 'login'%}">Login</a>
+        </li>
+
+        {% endif %}
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+      {% endblock %}

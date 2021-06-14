@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% include 'navbar.html'%}
+
+{% block content %}
+<h1 class="text-center" style= "padding: 5%;"> Welcome {{user.username}}</h1>
+
+<br>
+{% csrf_token %}
+<div class="container">
+    <div class="row">
+      <div class="col-4 " style="padding-left:8%">
+        <p>{{ user.first_name }} </p>
+      </div>
+      <div class="col-4 " style="padding-left:8%">
+        <p>{{ user.last_name }}</p>
+      </div>
+      <div class="col-4 " style="padding-left:8%">
+        <p>{{ user.email }}</p>
+      </div>
+</div>
+
+
+
+
+<br>
+ <h3 style= "padding: 6%; padding-left: 13%">My offers</h3>
+
+ <div class='container-fluid'>
+    <div class='row'>
+    {%for get_queen in queen_offered%}  
+    <div class="card col-sm-4 m-2" style="width: 18rem;"> 
+    <img src='{{get_queen.queen.image_url}}' class="card-img-top" style="height: 60%;"> 
+    <div class="card-body">
+        <h5 class="card-title">{{get_queen.queen}}</h5>
+        <p class="card-text" style="font-style: italic;">{{get_queen.queen.quote}}</p>
+    </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Winner : {{get_queen.queen.winner}}</li>
+            <li class="list-group-item">Miss Congeniality : {{get_queen.queen.missCongeniality}}</li>
+        </ul>
+
+        <div class="card-body">
+
+            <form method='POST'>
+                {% csrf_token %}
+                <input type='hidden' name="status" value='C'>
+                <input type='hidden' name="profile_id" value='{{get_queen.profile.id}}'>
+                <input type='hidden' name='queen_card_id' value='{{get_queen.id}}'>
+                <input type='submit' value='Accept this exchange'> 
+            
+            </form>
+        </div>
+        </div>
+{% endfor%}
+</div>
+</div>
+{% endblock %}

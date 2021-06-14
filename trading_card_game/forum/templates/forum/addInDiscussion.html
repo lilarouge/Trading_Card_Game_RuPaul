@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% include 'navbar.html'%}
+
+{% block content %}
+
+<head>
+    <style>
+        form{
+            border:4px solid black;
+            margin: 0 auto;
+            margin-top: 3%;
+            padding: 40px;
+            width: fit-content;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    
+</head>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" class="button" value="comment" style=" background-color: pink">
+</form>
+
+{% endblock %}

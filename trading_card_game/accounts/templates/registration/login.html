@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% include 'navbar.html'%}
+
+{% block content %}
+<h1 style="text-align: center; margin: 3%;"> Sign up to play</h1>
+<form method="POST" style="margin-left: 38%;">
+    {% csrf_token %}
+        {{ form }}
+    <button>Login</button>
+    </form>
+<div class="container">
+    <div class="row">
+      <div class="col-3 " style="margin-top: 6%; font-size: 18px;">
+        <p>Welcome to our trading cards game.
+            
+            Give a card and get a card in exchange.
+            
+            Discover all our queens 's specificities, and famous quotes
+            <br>
+            Best way to unlight your day!
+            <br>
+            Sassy day
+
+         </p>
+      </div>
+      <div class="col-2 " >
+        <p><img src= "https://www.313presents.com/assets/img/RuPaulDragRace2019_Spotlight_660x360-1-9df6d4d145.png" style="margin-top: 3%; margin-left: 38%;"> </p>
+      </div>
+
+
+
+{% endblock %}

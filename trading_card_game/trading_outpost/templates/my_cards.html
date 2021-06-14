@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% include 'navbar.html'%}
+
+{% block content %}
+<h1 class="text-center" style= "padding: 5%;"> {{user.username}}'s cards</h1>
+
+
+<div class='container-fluid'>
+    <div class='row'>
+    {% for queen_card in my_queens %}
+    <div class="card col-sm-4 m-2" style="width: 18rem;">
+    <img src='{{queen_card.queen.image_url}}' class="card-img-top" style="height: 60%;"> 
+    <div class="card-body" style="color:#8c6698;">
+        <h5 class="card-title">{{queen_card.queen}}</h5>
+        <p class="card-text" style="font-style: italic;">{{queen_card.queen.quote}}</p>
+    </div>
+        <ul class="list-group list-group-flush" >
+            <li class="list-group-item" style="color:#8c6698;">Winner : {{queen_card.queen.winner}}</li>
+            <li class="list-group-item" style="color:#8c6698;">Miss Congeniality : {{queen_card.queen.missCongeniality}}</li>
+        </ul>
+
+            <div class="card-body" style="align-self: center;">
+                <form method='POST'>
+                    {% csrf_token %}
+                    <input type='hidden' name="status" value='O'>
+                    <input type='hidden' name='id' value='{{queen_card.id}}'>
+                    <input type='submit' value='Give away' style="color:#3a0749;"> 
+                
+                </form>
+            </div>
+        </div>
+
+        
+{% endfor%}
+</div>
+</div>
+{% endblock %}
